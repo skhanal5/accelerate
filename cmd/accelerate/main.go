@@ -13,7 +13,7 @@ func main() {
 	port := "8080" // should be a const
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", handler.GetHealth)
+	mux.HandleFunc("/health", handler.GetHealth)
 	
 	logger.Info("Starting the server", "port", port) //this is an antipattern?
 	err := http.ListenAndServe(port, mux)

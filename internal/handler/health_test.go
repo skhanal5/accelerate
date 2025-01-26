@@ -13,7 +13,7 @@ func TestGetHealth(t *testing.T) {
 	// arrange
 	expectedStatusCode := 200
 	expectedBody := "Healthy status :)"
-	req := httptest.NewRequest("GET", "http://localhost:8000", nil)
+	req := httptest.NewRequest("GET", "/health", nil)
 	w := httptest.NewRecorder()
 
 	// act
