@@ -2,7 +2,6 @@ package main
 
 import (
 	"accelerate/internal/handler"
-	"errors"
 	"log/slog"
 	"net/http"
 	"os"
@@ -16,9 +15,5 @@ func main() {
 	mux.HandleFunc("/health", handler.GetHealth)
 	
 	logger.Info("Starting the server", "port", port) //this is an antipattern?
-	err := http.ListenAndServe(port, mux)
-
-	if errors.Is(err, http.ErrServerClosed) {
-		logger.Error(err.Error()) //this is also an antipattern
-	}
+	logger.Error(http.ListenAndServe(":8080", mux).Error())
 }
